@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Registration Form</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            background: #f2f2f2; 
+            padding: 50px; 
+        }
+        .container {
+            width: 400px; 
+            margin: 0 auto; 
+            background: white; 
+            padding-right: 70px;
+            padding-left: 50px; 
+            padding-top: 50px; 
+            padding-bottom: 50px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px #aaa;
+        }
+        input {
+            width: 100%; 
+            padding: 10px; 
+            margin: 10px 0;
+        }
+        button {
+            background: blue; 
+            color: white; 
+            padding: 10px; 
+            width: 425px; 
+            border: none; 
+            cursor: pointer;
+        }
+        .msg {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
 
+<body>
+
+<div class="container">
+    <center><h2>Registration Form</h2></center>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/register">
+        <input type="text" name="name" placeholder="Enter Name">
+        <input type="email" name="email" placeholder="Enter Email">
+        <input type="password" name="password" placeholder="Enter Password">
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+</body>
+</html>
